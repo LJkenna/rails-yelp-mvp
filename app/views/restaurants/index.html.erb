@@ -1,0 +1,21 @@
+<div class="container align-items">
+<div class="card col-12 p-4 text-center bg-light border-light">
+<h1>Restaurants in your area</h1>
+</div>
+<div class="card col-4 p-5 bg-light">
+<%= link_to "Add a new restaurant",  new_restaurant_path, class: "btn btn-primary" %>
+</div>
+<% @restaurants.each do |restaurant| %>
+<div class="card col-4 p-4 border-dark">
+<ul class="list-unstyled">
+<li>Name: <%=link_to restaurant.name, restaurant_path(restaurant), class: "text-decoration-none"%></li>
+<li>Address: <%=restaurant.address %></li>
+<li>Phone number: <%= restaurant.phone_number %></li>
+<li>Cuisine <%= restaurant.category %></li>
+<%= link_to restaurant_path(restaurant), data: {turbo_method: :delete, turbo_confirm: "Are you sure want to delete this?"}  do  %>
+<i class="fa-solid fa-trash"></i>
+<% end %>
+</ul>
+</div>
+<% end  %>
+</div>
